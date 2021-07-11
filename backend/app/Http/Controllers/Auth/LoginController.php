@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\Models\Memo;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -26,7 +29,28 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/memo';
+
+    protected function validateLogin(Request $request)
+    {
+        $request->validate(
+            [
+                $this->username() => 'required|max:255|email',
+                'password' => 'required|min:8|max:255|regex:/^[a-zA-Z0-9]+$/',
+            ],
+            [
+                'password.regex' => ':attributeは半角英数字で入力してください。'
+            ]
+        );
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        $memo = Memo::where('user_id', '=', Auth::id())->orderBy('updated_at', 'desc')->first();
+        if ($memo) {
+            session()->put('select_memo', $memo);
+        }
+    }
 
     /**
      * Create a new controller instance.
