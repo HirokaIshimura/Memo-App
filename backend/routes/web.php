@@ -28,7 +28,3 @@ Route::group(['middleware'=>['auth']], function(){
     Route::post('/memo/update', [MemoController::class, 'update'])->name('memo.update');
     Route::post('/memo/delete', [MemoController::class, 'delete'])->name('memo.delete');
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
