@@ -16,7 +16,7 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-Route::get('/', [LoginController::class, 'showLoginForm'])->name('login.index');
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/user', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/user/register', [RegisterController::class, 'register'])->name('user.register');
 
@@ -28,3 +28,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::post('/memo/update', [MemoController::class, 'update'])->name('memo.update');
     Route::post('/memo/delete', [MemoController::class, 'delete'])->name('memo.delete');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="d-flex align-items-center justify-content-center h-100">
-    <form method="post" action="{{ route('login') }}">
+    <form method="post" action="{{ url('login') }}">
         @csrf
         <div class="card rounded login-card-width shadow">
             <div class="card-body">
