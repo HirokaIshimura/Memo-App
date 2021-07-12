@@ -1,5 +1,9 @@
 # Memo-App
 
+#動作手順
+
+![動作手順](https://user-images.githubusercontent.com/70800437/125308057-8e19e680-e36b-11eb-86fa-42139ad09152.mov)
+
 #　作成意図
 
 -　テストや就職活動でメモを使う機会が増え、自分で制作してみたかった。
